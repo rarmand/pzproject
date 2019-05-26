@@ -4,12 +4,9 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import { Typography } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
-import Checkbox from "@material-ui/core/Checkbox";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Button from "@material-ui/core/Button";
 import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
-import Link from "@material-ui/core/Link";
 
 const theme = createMuiTheme({
   palette: {
@@ -46,7 +43,7 @@ const useStyles = makeStyles(theme => ({
   title: {
     fontWeight: "bold",
     textTransform: "uppercase",
-    letterSpacing: "8px",
+    letterSpacing: "6px",
     textAlign: "center",
     fontSize: "32px"
   },
@@ -63,20 +60,6 @@ const useStyles = makeStyles(theme => ({
   },
   input: {
     fontSize: 14
-  },
-  twoforms: {
-    display: "flex",
-    flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: "space-between",
-    margin: "5px",
-    width: "100%",
-    maxWidth: "400px",
-    Button: {
-      maxWidth: "400px",
-      width: "100%",
-      margin: "5px"
-    }
   },
   textfield: {
     width: "100%",
@@ -98,21 +81,23 @@ const useStyles = makeStyles(theme => ({
     flex: 1,
     fontSize: "0.875rem"
   },
+  linkButton: { textDecoration: "none", textTransform: "capitalize" },
   submitButtons: {
     display: "flex",
     flexWrap: "wrap",
-    flexDirection: "column",
-    alignItems: "center",
-    width: "100%",
-    maxWidth: "410px"
+    flexDirection: "row",
+    justifyContent: "space-between",
+    // width: "100%",
+    // maxWidth: "410px",
+    margin: "40px 0"
   },
   button: {
     flex: 1,
-    minWidth: "155px",
+    minWidth: "180px",
     textTransform: "capitalize",
     fontWeight: "normal",
     boxShadow: "none",
-    margin: "5px 5px 30px 5px"
+    margin: "5px"
   },
   footer: {
     display: "flex",
@@ -121,7 +106,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function Registration() {
+function Reset() {
   const classes = useStyles();
 
   return (
@@ -136,46 +121,12 @@ function Registration() {
                 Donut Monitoring
               </Typography>
               <Typography className={classes.subtitle}>
-                Please complete to create your account.
+                Enter your email and we send you a password reset link.
               </Typography>
             </div>
             <ThemeProvider theme={theme}>
               <div>
                 <form className={classes.loginForms}>
-                  <div className={classes.twoforms}>
-                    <TextField
-                      margin="normal"
-                      label={
-                        <Typography className={classes.input} color="primary">
-                          First name
-                        </Typography>
-                      }
-                      id="firstname"
-                      name="firstname"
-                      style={{ borderColor: "green" }}
-                    />
-                    <TextField
-                      margin="normal"
-                      name="lastname"
-                      label={
-                        <Typography className={classes.input} color="primary">
-                          Last name
-                        </Typography>
-                      }
-                      id="lastname"
-                    />
-                  </div>
-                  <TextField
-                    className={classes.textfield}
-                    margin="normal"
-                    label={
-                      <Typography className={classes.input} color="primary">
-                        Username
-                      </Typography>
-                    }
-                    id="username"
-                    name="username"
-                  />
                   <TextField
                     className={classes.textfield}
                     margin="normal"
@@ -187,53 +138,15 @@ function Registration() {
                     id="email"
                     name="email"
                   />
-                  <TextField
-                    className={classes.textfield}
-                    margin="normal"
-                    label={
-                      <Typography className={classes.input} color="primary">
-                        Password
-                      </Typography>
-                    }
-                    id="password"
-                    name="password"
-                    type="password"
-                  />
-                  <TextField
-                    className={classes.textfield}
-                    margin="normal"
-                    label={
-                      <Typography className={classes.input} color="primary">
-                        Confirm password
-                      </Typography>
-                    }
-                    id="confirmPassword"
-                    name="confirmPassword"
-                    type="password"
-                  />
-
-                  <div className={classes.additionalForms}>
-                    <FormControlLabel
-                      control={<Checkbox />}
-                      label={
-                        <Typography className={classes.checkbox}>
-                          I agree with terms and conditions
-                        </Typography>
-                      }
-                      color="primary"
-                      className={classes.checkbox}
-                    />
-                  </div>
 
                   <div className={classes.submitButtons}>
                     <Button
-                      color="primary"
+                      color={"primary"}
                       variant={"contained"}
                       className={classes.button}
                     >
-                      Sign up
+                      Send request
                     </Button>
-                    <Link>Already have an account? Sign in.</Link>
                   </div>
                 </form>
               </div>
@@ -248,4 +161,4 @@ function Registration() {
   );
 }
 
-export default Registration;
+export default Reset;
