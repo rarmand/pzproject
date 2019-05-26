@@ -1,9 +1,10 @@
-import Registration from "./components/registration";
-import Login from "./components/login";
-import Reset from "./components/reset";
+import React from "react";
+import Registration from "./pages/registration";
+import Login from "./pages/login";
+import Reset from "./pages/reset";
 
 function App() {
-  return Reset();
+  return <Login />;
 }
 
 export default App;
