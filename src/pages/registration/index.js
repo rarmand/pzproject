@@ -10,6 +10,9 @@ import Button from "@material-ui/core/Button";
 import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
 import Link from "@material-ui/core/Link";
+import Logo from "../../components/logo";
+import LoginButton from "../../components/loginButton";
+import LoginFooter from "../../components/loginFooter";
 
 const theme = createMuiTheme({
   palette: {
@@ -131,14 +134,7 @@ function Registration() {
       <Grid item xs={12} sm={8} md={6} elevation={6} square>
         <div className={classes.paper}>
           <div className={classes.fill}>
-            <div className={classes.titles}>
-              <Typography component="h1" variant="h5" className={classes.title}>
-                Donut Monitoring
-              </Typography>
-              <Typography className={classes.subtitle}>
-                Please complete to create your account.
-              </Typography>
-            </div>
+            <Logo subtitle={"Please complete to create your account."} />
             <ThemeProvider theme={theme}>
               <div>
                 <form className={classes.loginForms}>
@@ -239,9 +235,7 @@ function Registration() {
               </div>
             </ThemeProvider>
           </div>
-          <footer className={classes.footer}>
-            <p>Terms of use. Privacy policy.</p>
-          </footer>
+          <LoginFooter />
         </div>
       </Grid>
     </Grid>

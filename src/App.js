@@ -4,7 +4,7 @@ import Login from "./pages/login";
 import Reset from "./pages/reset";
 
 function App() {
-  return <Login />;
+  return Reset();
 }
 
 export default App;

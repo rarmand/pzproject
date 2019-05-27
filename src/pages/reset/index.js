@@ -7,6 +7,9 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
+import Logo from "../../components/logo";
+import LoginFooter from "../../components/loginFooter";
+import LoginInput from "../../components/loginInput";
 
 const theme = createMuiTheme({
   palette: {
@@ -116,28 +119,26 @@ function Reset() {
       <Grid item xs={12} sm={8} md={6} elevation={6} square>
         <div className={classes.paper}>
           <div className={classes.fill}>
-            <div className={classes.titles}>
-              <Typography component="h1" variant="h5" className={classes.title}>
-                Donut Monitoring
-              </Typography>
-              <Typography className={classes.subtitle}>
-                Enter your email and we send you a password reset link.
-              </Typography>
-            </div>
+            <Logo
+              subtitle={
+                "Enter your email and we send you a password reset link."
+              }
+            />
             <ThemeProvider theme={theme}>
               <div>
                 <form className={classes.loginForms}>
-                  <TextField
-                    className={classes.textfield}
-                    margin="normal"
-                    label={
-                      <Typography className={classes.input} color="primary">
-                        Email
-                      </Typography>
-                    }
-                    id="email"
-                    name="email"
-                  />
+                  {/*<TextField*/}
+                  {/*  className={classes.textfield}*/}
+                  {/*  margin="normal"*/}
+                  {/*  label={*/}
+                  {/*    <Typography className={classes.input} color="primary">*/}
+                  {/*      Email*/}
+                  {/*    </Typography>*/}
+                  {/*  }*/}
+                  {/*  id="email"*/}
+                  {/*  name="email"*/}
+                  {/*/>*/}
+                  <LoginInput label={"email"} />
 
                   <div className={classes.submitButtons}>
                     <Button
@@ -152,9 +153,7 @@ function Reset() {
               </div>
             </ThemeProvider>
           </div>
-          <footer className={classes.footer}>
-            <p>Terms of use. Privacy policy.</p>
-          </footer>
+          <LoginFooter />
         </div>
       </Grid>
     </Grid>
