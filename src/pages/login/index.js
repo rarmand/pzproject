@@ -1,17 +1,16 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import makeStyles from "@material-ui/core/styles/makeStyles";
-import { Typography } from "@material-ui/core";
-import TextField from "@material-ui/core/TextField";
-import Checkbox from "@material-ui/core/Checkbox";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Button from "@material-ui/core/Button";
+import withStyles from "@material-ui/core/styles/withStyles";
 import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
 import Link from "@material-ui/core/Link";
+
 import Logo from "../../components/logo";
 import LoginFooter from "../../components/loginFooter";
+import LoginInput from "../../components/loginInput";
+import LoginButton from "../../components/loginButton";
+import LoginCheckbox from "../../components/loginCheckbox";
 
 const theme = createMuiTheme({
   palette: {
@@ -20,7 +19,7 @@ const theme = createMuiTheme({
   }
 });
 
-const useStyles = makeStyles(theme => ({
+const useStyles = theme => ({
   root: {
     minHeight: "100vh"
   },
@@ -40,36 +39,10 @@ const useStyles = makeStyles(theme => ({
     flexDirection: "column",
     height: "100%"
   },
-  titles: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center"
-  },
-  title: {
-    fontWeight: "bold",
-    textTransform: "uppercase",
-    letterSpacing: "6px",
-    textAlign: "center",
-    fontSize: "32px"
-  },
-  subtitle: {
-    color: "#bbbcc0",
-    fontSize: "16px",
-    margin: "10px 0",
-    textAlign: "center"
-  },
   loginForms: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center"
-  },
-  input: {
-    fontSize: 14
-  },
-  textfield: {
-    width: "100%",
-    maxWidth: "400px",
-    margin: "5px"
   },
   additionalForms: {
     display: "flex",
@@ -81,11 +54,6 @@ const useStyles = makeStyles(theme => ({
     maxWidth: "400px",
     margin: "30px 0"
   },
-  checkbox: {
-    display: "flex",
-    flex: 1,
-    fontSize: "0.875rem"
-  },
   linkButton: { textDecoration: "none", textTransform: "capitalize" },
   submitButtons: {
     display: "flex",
@@ -94,101 +62,52 @@ const useStyles = makeStyles(theme => ({
     justifyContent: "space-between",
     width: "100%",
     maxWidth: "410px"
-  },
-  button: {
-    flex: 1,
-    minWidth: "155px",
-    textTransform: "capitalize",
-    fontWeight: "normal",
-    boxShadow: "none",
-    margin: "5px"
-  },
-  footer: {
-    display: "flex",
-    justifyContent: "center",
-    fontSize: "10px"
   }
-}));
+});
 
-function Login() {
-  const classes = useStyles();
+class Login extends React.Component {
+  render() {
+    const { classes } = this.props;
 
-  return (
-    <Grid className={classes.root} container direction="row">
-      <CssBaseline />
-      <Grid item xs={false} sm={4} md={6} className={classes.image} />
-      <Grid item xs={12} sm={8} md={6} elevation={6} square>
-        <div className={classes.paper}>
-          <div className={classes.fill}>
-            <Logo subtitle="Welcome back! Please login to your account." />
-            <ThemeProvider theme={theme}>
-              <div>
-                <form className={classes.loginForms}>
-                  <TextField
-                    className={classes.textfield}
-                    margin="normal"
-                    label={
-                      <Typography className={classes.input} color="primary">
-                        Username
-                      </Typography>
-                    }
-                    id="username"
-                    name="username"
-                  />
-                  <TextField
-                    className={classes.textfield}
-                    margin="normal"
-                    name="password"
-                    label={
-                      <Typography className={classes.input} color="primary">
-                        Password
-                      </Typography>
-                    }
-                    type="password"
-                    id="password"
-                  />
-
-                  <div className={classes.additionalForms}>
-                    <FormControlLabel
-                      control={<Checkbox />}
-                      label={
-                        <Typography className={classes.checkbox}>
-                          Remember me
-                        </Typography>
-                      }
-                      color="primary"
-                      className={classes.checkbox}
+    return (
+      <Grid className={classes.root} container direction="row">
+        <CssBaseline />
+        <Grid item xs={false} sm={4} md={6} className={classes.image} />
+        <Grid item xs={12} sm={8} md={6} elevation={6} square>
+          <div className={classes.paper}>
+            <div className={classes.fill}>
+              <Logo subtitle="Welcome back! Please login to your account." />
+              <ThemeProvider theme={theme}>
+                <div>
+                  <form className={classes.loginForms}>
+                    <LoginInput label={"username"} name={"Username"} />
+                    <LoginInput
+                      label={"password"}
+                      name={"Password"}
+                      type={"password"}
                     />
-                    <Link color="primary" className={classes.linkButton}>
-                      Forgot password
-                    </Link>
-                  </div>
 
-                  <div className={classes.submitButtons}>
-                    <Button
-                      color={"primary"}
-                      variant={"contained"}
-                      className={classes.button}
-                    >
-                      Login
-                    </Button>
-                    <Button
-                      color="primary"
-                      variant={"outlined"}
-                      className={classes.button}
-                    >
-                      Sign up
-                    </Button>
-                  </div>
-                </form>
-              </div>
-            </ThemeProvider>
+                    <div className={classes.additionalForms}>
+                      <LoginCheckbox text={"Remember me"} />
+                      <Link color="primary" className={classes.linkButton}>
+                        Forgot password
+                      </Link>
+                    </div>
+
+                    <div className={classes.submitButtons}>
+                      <LoginButton variant={"contained"} title={"Login"} />
+                      <LoginButton variant={"outlined"} title={"Sign up"} />
+                    </div>
+                  </form>
+                </div>
+              </ThemeProvider>
+            </div>
+            <LoginFooter />
           </div>
-          <LoginFooter />
-        </div>
+        </Grid>
       </Grid>
-    </Grid>
-  );
+    );
+  }
 }
 
-export default Login;
+export default withStyles(useStyles)(Login);

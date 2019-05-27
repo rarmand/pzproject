@@ -27,14 +27,14 @@ class Logo extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-      <div className={classes.titles}>
+      <header className={classes.titles}>
         <Typography component="h1" variant="h5" className={classes.title}>
           Donut Monitoring
         </Typography>
         <Typography className={classes.subtitle}>
           {this.props.subtitle}
         </Typography>
-      </div>
+      </header>
     );
   }
 }

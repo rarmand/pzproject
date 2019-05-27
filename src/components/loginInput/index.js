@@ -5,9 +5,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 
 const useStyles = theme => ({
   input: {
-    fontSize: "14px",
-    textTransform: "capitalize",
-    color: "black"
+    fontSize: "14px"
   },
   textfield: {
     width: "100%",
@@ -25,11 +23,12 @@ class LoginInput extends React.Component {
         margin="normal"
         label={
           <Typography className={classes.input} color="primary">
-            {classes.label}
+            {this.props.name}
           </Typography>
         }
-        id={classes.label}
-        name={classes.label}
+        id={this.props.label}
+        name={this.props.label}
+        type={this.props.type}
       />
     );
   }

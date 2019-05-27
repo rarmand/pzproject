@@ -1,15 +1,13 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import makeStyles from "@material-ui/core/styles/makeStyles";
-import { Typography } from "@material-ui/core";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
+import withStyles from "@material-ui/core/styles/withStyles";
 import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
 import Logo from "../../components/logo";
 import LoginFooter from "../../components/loginFooter";
 import LoginInput from "../../components/loginInput";
+import LoginButton from "../../components/loginButton";
 
 const theme = createMuiTheme({
   palette: {
@@ -18,7 +16,7 @@ const theme = createMuiTheme({
   }
 });
 
-const useStyles = makeStyles(theme => ({
+const useStyles = theme => ({
   root: {
     minHeight: "100vh"
   },
@@ -38,36 +36,11 @@ const useStyles = makeStyles(theme => ({
     flexDirection: "column",
     height: "100%"
   },
-  titles: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center"
-  },
-  title: {
-    fontWeight: "bold",
-    textTransform: "uppercase",
-    letterSpacing: "6px",
-    textAlign: "center",
-    fontSize: "32px"
-  },
-  subtitle: {
-    color: "#bbbcc0",
-    fontSize: "16px",
-    margin: "10px 0",
-    textAlign: "center"
-  },
+
   loginForms: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center"
-  },
-  input: {
-    fontSize: 14
-  },
-  textfield: {
-    width: "100%",
-    maxWidth: "400px",
-    margin: "5px"
   },
   additionalForms: {
     display: "flex",
@@ -79,11 +52,6 @@ const useStyles = makeStyles(theme => ({
     maxWidth: "400px",
     margin: "30px 0"
   },
-  checkbox: {
-    display: "flex",
-    flex: 1,
-    fontSize: "0.875rem"
-  },
   linkButton: { textDecoration: "none", textTransform: "capitalize" },
   submitButtons: {
     display: "flex",
@@ -93,71 +61,46 @@ const useStyles = makeStyles(theme => ({
     // width: "100%",
     // maxWidth: "410px",
     margin: "40px 0"
-  },
-  button: {
-    flex: 1,
-    minWidth: "180px",
-    textTransform: "capitalize",
-    fontWeight: "normal",
-    boxShadow: "none",
-    margin: "5px"
-  },
-  footer: {
-    display: "flex",
-    justifyContent: "center",
-    fontSize: "10px"
   }
-}));
+});
 
-function Reset() {
-  const classes = useStyles();
+class Reset extends React.Component {
+  render() {
+    const { classes } = this.props;
 
-  return (
-    <Grid className={classes.root} container direction="row">
-      <CssBaseline />
-      <Grid item xs={false} sm={4} md={6} className={classes.image} />
-      <Grid item xs={12} sm={8} md={6} elevation={6} square>
-        <div className={classes.paper}>
-          <div className={classes.fill}>
-            <Logo
-              subtitle={
-                "Enter your email and we send you a password reset link."
-              }
-            />
-            <ThemeProvider theme={theme}>
-              <div>
-                <form className={classes.loginForms}>
-                  {/*<TextField*/}
-                  {/*  className={classes.textfield}*/}
-                  {/*  margin="normal"*/}
-                  {/*  label={*/}
-                  {/*    <Typography className={classes.input} color="primary">*/}
-                  {/*      Email*/}
-                  {/*    </Typography>*/}
-                  {/*  }*/}
-                  {/*  id="email"*/}
-                  {/*  name="email"*/}
-                  {/*/>*/}
-                  <LoginInput label={"email"} />
+    return (
+      <Grid className={classes.root} container direction="row">
+        <CssBaseline />
+        <Grid item xs={false} sm={4} md={6} className={classes.image} />
+        <Grid item xs={12} sm={8} md={6} elevation={6} square>
+          <div className={classes.paper}>
+            <div className={classes.fill}>
+              <Logo
+                subtitle={
+                  "Enter your email and we send you a password reset link."
+                }
+              />
+              <ThemeProvider theme={theme}>
+                <div>
+                  <form className={classes.loginForms}>
+                    <LoginInput label={"email"} name={"Email"} type={"email"} />
 
-                  <div className={classes.submitButtons}>
-                    <Button
-                      color={"primary"}
-                      variant={"contained"}
-                      className={classes.button}
-                    >
-                      Send request
-                    </Button>
-                  </div>
-                </form>
-              </div>
-            </ThemeProvider>
+                    <div className={classes.submitButtons}>
+                      <LoginButton
+                        variant={"contained"}
+                        title={"Send request"}
+                      />
+                    </div>
+                  </form>
+                </div>
+              </ThemeProvider>
+            </div>
+            <LoginFooter />
           </div>
-          <LoginFooter />
-        </div>
+        </Grid>
       </Grid>
-    </Grid>
-  );
+    );
+  }
 }
 
-export default Reset;
+export default withStyles(useStyles)(Reset);

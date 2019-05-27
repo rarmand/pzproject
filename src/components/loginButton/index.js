@@ -19,10 +19,10 @@ class LoginButton extends React.Component {
     return (
       <Button
         color={"primary"}
-        variant={classes.variant}
+        variant={this.props.variant}
         className={classes.button}
       >
-        {classes.title}
+        {this.props.title}
       </Button>
     );
   }
